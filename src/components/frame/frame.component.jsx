@@ -36,7 +36,7 @@ const Frame = (props) => {
         // full={true}
         light
       >
-        <NavbarBrand href="/">Movie Catalog</NavbarBrand>
+        <NavbarBrand style={{cursor:"pointer"}} onClick={() => window.location.assign("/")}>Movie Catalog</NavbarBrand>
         <NavbarToggler onClick={function noRefCheck() {}} />
         <Collapse navbar>
           <Nav className="me-auto" navbar>

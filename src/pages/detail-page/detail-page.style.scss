@@ -1,0 +1,129 @@
+@import '../../responsive.styles.scss';
+.movie-details-container {
+  padding: 50px 0px 50px 90px;
+  @include respond(tab-land){
+    padding: 50px 0px 30px 50px;
+  }
+  @include respond(phone){
+    // padding: 50px 0px 30px 30px;
+  }
+  .header-container {
+    display: flex;
+    justify-content: center;
+    @include respond(tab-port){
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    @include respond(phone){
+      flex-direction: column;
+    }
+    .banner-wrapper {
+      position: relative;
+      @include respond(tab-port){
+        width: 80%;
+      }
+      @include respond(phone){
+        align-self: center;
+        width: 100%;
+        margin-bottom: 30px;
+      }
+
+    }
+
+    &__banner {
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+      z-index: 1;
+      @include respond(tab-port){
+        width: 80%;
+      }
+      @include respond(tab-land){
+        border-radius: 10px;
+      }
+    }
+    &__icon-banner {
+      z-index: 10;
+      position: absolute;
+      right: 0;
+      padding-top: 10px;
+      color: white;
+      @include respond(tab-port){
+        right: 60px;
+      }
+      @include respond(phone){
+        display: none;
+        visibility: hidden;
+        width: 0px;
+        height: 0px;
+      }
+    }
+    &__stats {
+      width: 50%;
+      margin-left: 50px;
+      @include respond(tab-port){
+        margin-left: 0px;
+        width: 80%;
+      }
+      .stats-title{
+        @include respond(tab-port){
+          font-size: 22px;
+        }
+        @include respond(phone){
+          text-align: center;
+        }
+      }
+      .stats-info {
+        margin-top: 20px;
+        @include respond(tab-land){
+          & > *{
+            font-size: 16px;
+          }
+        }
+        @include respond(tab-port){
+          & > *{
+            font-size: 16px;
+          }
+        }
+      }
+
+      .stats-score {
+        margin-top: 20px;
+        display: flex;
+        @include respond(tab-port){
+          flex-direction: column;
+          margin-top: 30px;
+        }
+        @include respond(phone){
+          flex-direction: column;
+          margin-top: 30px;
+        }
+        &__rating {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          border-right: 1px solid grey;
+          width: 100%;
+          padding: 0px 5px 0px 5px;
+          & > * {
+            padding-top: 10px;
+            @include respond(phone){
+              padding-top: 15px;
+              padding-bottom: 15px;
+            }
+          }
+          &:first-child {
+            border-left: 1px solid grey;
+            @include respond(tab-port){
+              border-left: 0px;
+            }
+          }
+          @include respond(tab-port){
+            border-left: 0px;
+            border-right: 0px;
+            border-top: 1px solid grey;
+            border-bottom: 1px solid grey;
+          }
+        }
+      }
+    }
+  }
+}

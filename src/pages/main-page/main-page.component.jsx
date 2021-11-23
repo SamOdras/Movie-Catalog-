@@ -143,7 +143,9 @@ const MainPage = () => {
                     <div className="image-overlay">
                       <div className="button-wrapper">
                         <Button
-                          onClick={() => history.push("/detail")}
+                          onClick={() =>
+                            history.push("/detail", { item })
+                          }
                           color="warning"
                           style={{ marginRight: "5px" }}
                         >
@@ -182,7 +184,7 @@ const MainPage = () => {
                         <Button
                           color="warning"
                           style={{ marginRight: "5px" }}
-                          onClick={() => history.push("/detail")}
+                          onClick={() => history.push("/detail", {state:item})}
                         >
                           Read More
                         </Button>
