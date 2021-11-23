@@ -1,36 +1,64 @@
-import React from 'react';
+import React, {useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarToggler,
+  Collapse,
+  Nav,
+  Input,
+  Spinner,
+  NavbarText,
+} from "reactstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Frame = (props) => {
+  const dispatch = useDispatch();
+  // const [searchValue, setSearchValue] = useState("")
+  const { isLoading, searchValue } = useSelector(state => state.movie);
+
+  const onChangeSearch = useCallback((e) => {
+    return dispatch({
+      type:"SEARCH_MOVIE",
+      payload:e
+    })
+  }, [dispatch])
+
   return (
     <div>
-      <Navbar color="warning" container expand fixed="top" full light>
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+      <Navbar
+        style={{ boxShadow: "1px 4px 4px -4px", height: "60px" }}
+        color="light"
+        container
+        expand
+        fixed="top"
+        // full={true}
+        light
+      >
+        <NavbarBrand href="/">Movie Catalog</NavbarBrand>
         <NavbarToggler onClick={function noRefCheck() {}} />
         <Collapse navbar>
           <Nav className="me-auto" navbar>
-            <NavItem>
-              <NavLink href="/components/">Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-                GitHub
-              </NavLink>
-            </NavItem>
-            <UncontrolledDropdown inNavbar nav>
-              <DropdownToggle caret nav>
-                Options
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
+            {/* <Button>Search</Button> */}
+            <Input
+              // className="ml-2"
+              style={{ marginLeft: "20px", width: "500px" }}
+              placeholder="Cari Film"
+              type="search"
+              onChange={e => onChangeSearch(e.target.value)}
+              value={searchValue}
+            />
           </Nav>
-          <NavbarText>Simple Text</NavbarText>
+
+          {isLoading && (
+            <NavbarText>
+              <Spinner size="sm" /> Loading...
+            </NavbarText>
+          )}
         </Collapse>
       </Navbar>
+      {props.children}
     </div>
   );
 }

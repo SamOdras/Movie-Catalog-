@@ -1,0 +1,34 @@
+.image-overlay{
+  background-color:#040404a8;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20%;
+  padding: 7px;
+  opacity: 0;
+  transition: all .2s;
+  .button-wrapper {
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+.card-image{
+  cursor: pointer;
+  transition: all .2s;
+}
+.card-wrapper{
+  transition: all .2s;
+  z-index: 10;
+  &:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 5px 10px 5px rgba(0,0,0,.3);
+    transform: scale(1.1);
+    z-index: 9999;
+  }
+}
+.card-wrapper:hover .image-overlay {
+  opacity: 1;
+}
+  .card-wrapper:hover .card-image{
+    opacity: 0.9;
+  }

@@ -3,21 +3,38 @@ import React, { lazy, Suspense } from 'react';
 import { Switch, Router, Route } from "react-router-dom";
 import history from "./history";
 import Spinner from "./components/spinner/spinner.component";
+import Frame from './components/frame/frame.component';
 
 const MainPage = lazy(() => import("./pages/main-page/main-page.component"))
 const DetailPage = lazy(() => import("./pages/detail-page/detail-page.component"));
 
 const App = () => {
+
+  const FrameLayout = (Component, props) => {
+    return (
+      <Frame {...props}>
+        <Component {...props} />
+      </Frame>
+    );
+  };
   return (
     <Router history={history}>
-      <Suspense fallback={<Spinner/>}>
+      <Suspense fallback={<Spinner />}>
         <Switch>
-          <Route path="/" exact component={MainPage}/>
-          <Route path="/detail" exact component={DetailPage}/>
+          <Route
+            path="/"
+            exact
+            render={props => FrameLayout(MainPage, props)}
+          />
+          <Route
+            path="/detail"
+            exact
+            render={props => FrameLayout(DetailPage, props)}
+          />
         </Switch>
       </Suspense>
     </Router>
-  )
+  );
 }
 
 export default App;
