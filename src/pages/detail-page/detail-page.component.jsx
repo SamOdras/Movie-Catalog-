@@ -2,42 +2,31 @@ import React, { useEffect, useState, useCallback } from 'react';
 import './detail-page.style.scss'
 import history from './../../history';
 import Axios from 'axios';
-import { useDispatch } from "react-redux";
+
 const movieAPI = "http://www.omdbapi.com/?apikey=e3fad09a&";
 const DetailPage = (props) => {
-  const dispatch = useDispatch();
-
-  const { location } = props
-
+  const { location, setIsLoading } = props
   const [movieDetails, setMovieDetails] = useState(null)
 
-  const setIsLoading = useCallback(
-    e =>
-      dispatch({
-        type: "SEARCH_LOADING",
-        payload: e
-      }),
-    [dispatch]
-  );
+  const getData = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await Axios.get(
+        `${movieAPI}&i=${location.state.state.imdbID}`
+      );
+      setMovieDetails(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+    setIsLoading(false);
+  }, [setIsLoading, location]);
 
   useEffect(() => {
     if(!location || !location.state || !location.state.state) history.push("/");
     else {
-      const getData = async () => {
-        setIsLoading(true)
-        try {
-          const response = await Axios.get(
-            `${movieAPI}&i=${location.state.state.imdbID}`
-          );
-          setMovieDetails(response.data)
-        } catch(e){
-          console.log(e)
-        }
-        setIsLoading(false)
-      }
       getData()
     }
-  }, [location])
+  }, [location, setIsLoading, getData])
   return (
     <>
       {location.state && location.state.state && movieDetails && (

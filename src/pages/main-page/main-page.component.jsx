@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import {
   Card,
   CardImg,
@@ -13,19 +12,13 @@ import Axios from 'axios';
 import history from '../../history';
 const movieAPI = "http://www.omdbapi.com/?apikey=e3fad09a&";
 
-const MainPage = () => {
-  const dispatch = useDispatch();
+const MainPage = (props) => {
   const [listMovie, setListMovie] = useState([])
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true)
   const [isOpen, setIsOpen] = useState(false);
-  // const [isLoading, setIsLoading] = useState(false)
-  const { searchValue, isLoading } = useSelector(state => state.movie)
+  const { searchValue, isLoading, setIsLoading } = props;
 
-  const setIsLoading = useCallback((e) => dispatch({
-    type:"SEARCH_LOADING",
-    payload:e
-  }), [dispatch])
 
   useEffect(() => {
     let cancel = () => {};
@@ -47,11 +40,8 @@ const MainPage = () => {
       }
       setIsLoading(false);
     }
-
     search();
-        console.log("hello");
     return () => cancel();
-
   }, [searchValue, setIsLoading]);
 
   useEffect(() => {

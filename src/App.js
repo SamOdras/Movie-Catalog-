@@ -3,10 +3,10 @@ import React, { lazy, Suspense } from 'react';
 import { Switch, Router, Route } from "react-router-dom";
 import history from "./history";
 import Spinner from "./components/spinner/spinner.component";
-import Frame from './components/frame/frame.component';
+import Frame from './components/frame/frame.container';
 
-const MainPage = lazy(() => import("./pages/main-page/main-page.component"))
-const DetailPage = lazy(() => import("./pages/detail-page/detail-page.component"));
+const MainPage = lazy(() => import("./pages/main-page/main-page.container"))
+const DetailPage = lazy(() => import("./pages/detail-page/detail-page.container"));
 
 const App = () => {
 

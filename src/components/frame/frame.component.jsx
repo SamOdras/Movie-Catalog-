@@ -1,5 +1,4 @@
-import React, {useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 
 import {
   Navbar,
@@ -14,17 +13,7 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Frame = (props) => {
-  const dispatch = useDispatch();
-  // const [searchValue, setSearchValue] = useState("")
-  const { isLoading, searchValue } = useSelector(state => state.movie);
-
-  const onChangeSearch = useCallback((e) => {
-    return dispatch({
-      type:"SEARCH_MOVIE",
-      payload:e
-    })
-  }, [dispatch])
-
+  const { isLoading, searchValue, onChangeSearch } = props
   return (
     <div>
       <Navbar
@@ -36,13 +25,12 @@ const Frame = (props) => {
         // full={true}
         light
       >
-        <NavbarBrand style={{cursor:"pointer"}} onClick={() => window.location.assign("/")}>Movie Catalog</NavbarBrand>
+        <NavbarBrand title="brand" style={{cursor:"pointer"}} onClick={() => window.location.assign("/")}>Movie Catalog</NavbarBrand>
         <NavbarToggler onClick={function noRefCheck() {}} />
         <Collapse navbar>
           <Nav className="me-auto" navbar>
-            {/* <Button>Search</Button> */}
             <Input
-              // className="ml-2"
+              title="searchMovie"
               style={{ marginLeft: "20px", width: "500px" }}
               placeholder="Cari Film"
               type="search"
@@ -52,7 +40,7 @@ const Frame = (props) => {
           </Nav>
 
           {isLoading && (
-            <NavbarText>
+            <NavbarText title="loading-indicator">
               <Spinner size="sm" /> Loading...
             </NavbarText>
           )}
