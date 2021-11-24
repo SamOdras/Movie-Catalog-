@@ -1,17 +1,3 @@
-<p align="center">
-  <a href="https://gitlab.com/odrassam/react-space-chatting">
-    <img src="https://drive.google.com/file/d/1evQRNr0eu-vf34gtgpu7Py04W9Jn5x4K/view?usp=sharing" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">Space Chat</h3>
-
-  <p align="center">
-    <a href="https://rdh-space-chat.netlify.app/">View Demo</a>
-  </p>
-</p>
-
-
-
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
@@ -36,16 +22,15 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-Spacechatting is a React-Redux application where you can meet socialize with your friends.
+Movie Catalog is a React-Redux application where you can meet socialize with your friends.
 
 ### Built With
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 * ReactJs
-* SCSS
-* Firebase
+* Axios
 * Redux
-* Material UI
+* Bootstrap
 
 
 <!-- GETTING STARTED -->
@@ -73,3 +58,20 @@ This is an example of how to list things you need to use the software and how to
    npm install
    ```
 
+### How to run in local
+
+1. Follow the installation guide first
+
+2. Run Npm
+   ```sh
+   npm start
+   ```
+
+### How to test in local
+
+1. Follow the installation guide first
+
+2. Run Npm
+   ```sh
+   npm test
+   ```
